@@ -6,10 +6,33 @@ package pwo.seq;
 
 import java.util.stream.Stream;
 
+/**
+ * Enum SeqType reprezentuje różne typy sekwencji liczb. Aktualnie obsługiwane
+ * typy to Fibonacci (FIB), Lucas (LUC) i Tribonacci (TRI). Każdy typ sekwencji
+ * ma przypisany odpowiedni generator.
+ *
+ * Klasa ta posiada statyczne bloki inicjalizacyjne, które sprawdzają poprawność
+ * długości nazw typów sekwencji. Metody statyczne umożliwiają konwersję z ciągu
+ * znaków na odpowiadający typ sekwencji oraz uzyskanie generatora dla danego
+ * typu.
+ *
+ * @author szyme
+ */
 public enum SeqType {
 
+    /**
+     *
+     */
     FIB, //Fibonacci
+
+    /**
+     *
+     */
     LUC, //Lucas
+
+    /**
+     *
+     */
     TRI; //Tribonacci
     private static final int B = 0, L = 3;
     private static final String FIX_SEQTYPE
@@ -23,6 +46,13 @@ public enum SeqType {
         });
     }
 
+    /**
+     * Metoda konwertująca ciąg znaków na odpowiadający typ sekwencji.
+     *
+     * @param type Ciąg znaków reprezentujący typ sekwencji.
+     * @return Odpowiedni typ sekwencji lub null, jeśli konwersja nie powiedzie
+     * się.
+     */
     public static SeqType fromString(String type) {
         try {
             return valueOf(type.trim()
@@ -34,6 +64,12 @@ public enum SeqType {
         }
     }
 
+    /**
+     * Metoda uzyskująca generator dla danego typu sekwencji.
+     *
+     * @return Generator odpowiadający danemu typowi sekwencji.
+     * @throws IllegalStateException Jeśli typ sekwencji jest niepoprawny.
+     */
     public Generator getGenerator() {
         switch (this) {
             case FIB:
